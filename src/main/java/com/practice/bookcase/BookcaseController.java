@@ -10,21 +10,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class BookcaseController
 {
-    public static int count = 0;
-    public static Lst myList = new Lst();
+    public static boolean count = true;
+    public static ClassLst myList = new ClassLst();
 
     private void init(Model model)
     {
-        if(count < 1)
+        //
+        if(count)
         {
-
+            myList.list.add("test");
             model.addAttribute("myList", myList);
+            model.addAttribute("str", myList);
 
 
             Book.addNewBook(new Book(1,"To kill a Mocking Bird","Harper Lee","1960"));
             Book.addNewBook(new Book(2,"Pride & Judice","Jane Austen","1813"));
             Book.addNewBook(new Book(3,"Of Mice & Men","John Steinback","1937"));
-            count++;
+            count = false;
         }
     }
 
@@ -120,12 +122,14 @@ public class BookcaseController
 
 ////////////////////////////////////////////////////////
     @PostMapping("/addToList")
-    public String addToList(@ModelAttribute Lst lst, Model model)
+    public String addToList(@ModelAttribute ClassLst lst, @ModelAttribute("sInput") String item, Model model)
     {
-        myList.list.add(lst.str);
 
 
-        model.addAttribute("myList", Lst.sortAscending(myList.list));
+        myList.list.add(item);
+
+
+        model.addAttribute("myList", ClassLst.sortAscending(myList.list));
 
         //model.addAttribute("book",Book.books);
         return "viewBooks";

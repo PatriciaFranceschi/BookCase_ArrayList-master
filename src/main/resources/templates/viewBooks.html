@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Title</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -11,7 +10,18 @@
 </head>
 
 <body>
+<br>
+<form  th:action="@{/addToList}"  th:object="${myList}" method="post">
 
+    <div>
+        <label>Add a Text</label>
+        <input type="text" th:field="*{sInput}" placeholder="string" />
+    </div>
+
+    <input class="btn btn-primary mt-2 mr-2" type="submit" value="Add to List"/>
+
+</form>
+<br>
 <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
@@ -29,25 +39,19 @@
         <td th:text="${books.getBookAuthor()}"></td>
         <td th:text="${books.getBookYear()}"></td>
     </tr>
-    <br>
-    <form action="#" th:action="@{/addToList}" method="post" th:object="${myList}">
-        <p>
-            String do Add : <input type="text" th:field="*{str}" >
-        </p>
 
-        <br/>
 
-        <input class="btn btn-primary mt-2 mr-2" type="submit" value="Add to List"/>
 
-    </form>
-    <div id="two" th:each="List:${cloudProvider}">
+    <div id="two" th:each="item:${ListProvider}">
         <ul>
             <li>
-                <span th:text=${List}>items will print here</span>
+                <span th:text=${item}>items will print here</span>
             </li>
         </ul>
     </div>
 </table>
+
+
 
 <div class="container text-center">
     <a class="btn btn-success" href="/">Back To Homepage</a>

@@ -3,12 +3,13 @@ package com.practice.bookcase;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Lst {
-    public String str;
+public class ClassLst {
+    public static String str;
+    private String sInput;
 
     public static ArrayList<String> list = new ArrayList<String>();
 
-    public Lst() {
+    public ClassLst() {
 
     }
     public static ArrayList sortAscending(ArrayList<String> lst) {
